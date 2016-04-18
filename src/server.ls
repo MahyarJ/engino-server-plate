@@ -4,6 +4,7 @@ require! {
   'http'
   'socket.io'
   './namespaces'
+  './lib'
 }
 
 app = express()
