@@ -5,7 +5,10 @@ require! {
   'socket.io'
   './namespaces'
   './lib'
+  './core/init': initCorePromise
 }
+
+<- initCorePromise.then
 
 app = express()
 server = http.createServer app
@@ -26,4 +29,13 @@ io.on 'connection', (socket) ->
       console.log result
 
 server.listen 3000, ->
+  app.get \*, (req, res) ->
+    params = req.query
+    fn = req.path.substring(1)
+    if namespaces[fn]?
+      namespaces[fn](params)
+      .then (result) ->
+        res.json result
+    else
+      res.json {success: false, msg: "404"}
   console.log 'Server is online - 3000'

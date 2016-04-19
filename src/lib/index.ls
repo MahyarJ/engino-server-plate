@@ -14,4 +14,9 @@ fs
     .forEach (file) ->
       filename = file.split('.')[0]
       console.log "./#{entity}/" + filename
-      exports["#{entity}/#{filename}"] = require "./#{entity}/" + filename
+      
+      fileObject = {}
+      fileObject[filename] = require "./#{entity}/#{filename}"
+      
+      exports[entity] ?= {}
+      exports[entity] <<< fileObject

@@ -2,8 +2,8 @@ require! {
   'assert'
 }
 
-module.exports = findDocument = (db, callback) ->
-  collection = db.collection 'documents'
+module.exports = findDocument = (callback) ->
+  collection = engino.mongo.collection 'documents'
 
   collection.find({}).toArray (err, result) ->
     assert.equal err, null
