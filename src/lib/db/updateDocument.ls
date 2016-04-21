@@ -2,8 +2,8 @@ require! {
   'assert'
 }
 
-module.exports = updateDocument = (db, callback) ->
-  collection = db.collection 'documents'
+module.exports = updateDocument = (callback) ->
+  collection = engino.mongo.collection 'documents'
 
   collection.updateOne {a: 2}, {$set: {b: 1}}, (err, result) ->
     assert.equal err, null

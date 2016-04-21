@@ -2,8 +2,8 @@ require! {
   'assert'
 }
 
-module.exports = deleteDocument = (db, callback) ->
-  collection = db.collection 'documents'
+module.exports = deleteDocument = (callback) ->
+  collection = engino.mongo.collection 'documents'
 
   collection.deleteOne {a: 3}, (err, result) ->
     assert.equal err, null

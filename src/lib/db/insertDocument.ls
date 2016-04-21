@@ -2,8 +2,8 @@ require! {
   'assert'
 }
 
-module.exports = insertDocument = (db, callback) ->
-  collection = db.collection 'documents'
+module.exports = insertDocument = (callback) ->
+  collection = engino.mongo.collection 'documents'
 
   collection.insertMany do
     * a: 1
