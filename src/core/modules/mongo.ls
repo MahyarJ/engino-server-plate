@@ -13,6 +13,6 @@ url = "mongodb://localhost:#{dbPort}/#{dbName}"
 module.exports = wn.promise (resolve, reject) ->
   MongoClient.connect url, (err, db) ->
     if err?
-      reject db
+      reject err
     console.log "DB Connected Successfully - #{dbPort}/#{dbName}"
     resolve db
