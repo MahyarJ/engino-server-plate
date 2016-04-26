@@ -8,12 +8,12 @@ fs
 .forEach (entity) ->
   if fs.statSync(path.join __dirname, entity).isDirectory()
     normalizedPath = path.join __dirname, entity
-
+    console.log "Available lib modules:"
     fs
     .readdirSync normalizedPath
     .forEach (file) ->
       filename = file.split('.')[0]
-      console.log "./#{entity}/" + filename
+      console.log "\t #{entity}.#{filename}"
       
       fileObject = {}
       fileObject[filename] = require "./#{entity}/#{filename}"
