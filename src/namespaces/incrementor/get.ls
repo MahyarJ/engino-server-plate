@@ -5,6 +5,5 @@ require! {
 
 module.exports = (params) ->
   wn.promise (resolve, reject) ->
-    # console.log engino
-    # console.log lib 
-    resolve params.name + ' :)'
+    engino.mongo.collection('products').find!.toArray!.then (data) ->
+     resolve data.pop!.number
