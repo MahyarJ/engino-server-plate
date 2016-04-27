@@ -3,12 +3,12 @@ require! {
   'express'
   'http'
   'socket.io'
-  './namespaces'
-  './lib'
   './core/init': initCorePromise
 }
 
 <- initCorePromise.then
+lib = require './lib'
+namespaces = require './namespaces'
 
 app = express()
 server = http.createServer app
