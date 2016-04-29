@@ -3,6 +3,7 @@ require! {
   'express'
   'http'
   'socket.io'
+  "cookieparser"
   './core/init': initCorePromise
 }
 
@@ -22,7 +23,8 @@ io.on 'connection', (socket) ->
   socket.on \callee, (data) ->
     try
       requestKey = data.requestKey or "invalid_key"
-      namespaces[data.fn](data.params)
+      cookie = cookieparser.parse socket.request.headers.cookie
+      namespaces[data.fn](data.params, cookie)
       .then (result) ->
         response = {requestKey, result}
         socket.send(response)

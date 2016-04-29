@@ -5,6 +5,7 @@ require! {
 
 module.exports = (params) ->
   wn.promise (resolve, reject) ->
-    # console.log engino
-    # console.log lib 
-    resolve params.name + ' :)'
+
+    engino.auth.login(params.email, params.pass)
+    .then (result) ->
+      resolve result
