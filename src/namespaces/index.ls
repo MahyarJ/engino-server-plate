@@ -8,7 +8,7 @@ fs
 .forEach (entity) ->
   if fs.statSync(path.join __dirname, entity).isDirectory()
     normalizedPath = path.join __dirname, entity
-
+    console.log 'Engino Namespaces:\t'
     fs
     .readdirSync normalizedPath
     .forEach (file) ->

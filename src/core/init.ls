@@ -19,8 +19,8 @@ module.exports = wn.promise (resolve, reject) ->
     allModulePromises.push modulePromise
     modulePromise.then (moduleInstance) ->
       global.engino[filename] = moduleInstance
-      console.log "available engino modules: ", Object.keys(global.engino)
-    
+      console.log "Engino Core Modules: \n\t", Object.keys(global.engino)
+
   wn.all allModulePromises
   .then ->
     resolve!
