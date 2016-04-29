@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookieparser": "^0.1.0",
     "express": "^4.13.4",
     "livescript": "^1.4.0",
     "mongodb": "^2.1.7",
