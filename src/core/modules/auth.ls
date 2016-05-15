@@ -65,6 +65,8 @@ class Authenticator
 
   getUserByToken: (token) ->
     wn.promise (resolve, reject) ~>
+      unless token?
+        return resolve { success: false }
       engino.mongo.collection('session').find({token: parseInt(token)}).toArray().then (data) ~>
         if data.length is 1
           userId = data.pop().userId
