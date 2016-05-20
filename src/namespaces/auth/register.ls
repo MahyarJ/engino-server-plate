@@ -5,6 +5,6 @@ require! {
 
 module.exports = (params) ->
   wn.promise (resolve, reject) ->
-    engino.auth.register(params.name, params.email, params.pass, params.confirm)
+    engino.auth.register(params.email, params.password)
     .then (result) ->
       resolve result

@@ -23,6 +23,21 @@ class Authenticator
           resolve({success: false})
           return
 
+  register: (email, password) ->
+    wn.promise (resolve, reject) ~>
+      engino.mongo.collection \users
+      .find { email }
+      .toArray().then (findExistingUser) ~>
+        if findExistingUser.length > 0
+          resolve { success: false, data: "Email already exists." }
+          return
+        engino.mongo.collection \users
+        .insert { email, password }
+        .then (insertData) ~>
+          if insertData?
+            resolve { success: true, data: insertData }
+            return
+
   logout: (token) ->
     wn.promise (resolve, reject) ~>
       engino.mongo.collection('session').deleteOne {token: token}, (err, data) ->
@@ -48,20 +63,20 @@ class Authenticator
     #   return "Password is not strong enough"
     return
 
-  register: (fullName, email, pass, confirmPass)->
-    wn.promise (resolve, reject) ~>
-      validateStatus = @_validateRegister(fullName, email, pass, confirmPass)
-      if validateStatus?
-        resolve({success: false, msg: validateStatus})
-        return
-      engino.mongo.collection("users").find({email: email}).toArray().then (findExistingUser) ~>
-        if findExistingUser.length > 0
-          resolve({success: false, msg: "Email already exist"})
-          return
-        engino.mongo.collection("users").insert({fullName: fullName, email: email, password: pass}).then (insertData) ~>
-          @login email, pass
-          .then (loginResult) ->
-            resolve(loginResult)
+  # register: (fullName, email, pass, confirmPass)->
+  #   wn.promise (resolve, reject) ~>
+  #     validateStatus = @_validateRegister(fullName, email, pass, confirmPass)
+  #     if validateStatus?
+  #       resolve({success: false, msg: validateStatus})
+  #       return
+  #     engino.mongo.collection("users").find({email: email}).toArray().then (findExistingUser) ~>
+  #       if findExistingUser.length > 0
+  #         resolve({success: false, msg: "Email already exist"})
+  #         return
+  #       engino.mongo.collection("users").insert({fullName: fullName, email: email, password: pass}).then (insertData) ~>
+  #         @login email, pass
+  #         .then (loginResult) ->
+  #           resolve(loginResult)
 
   getUserByToken: (token) ->
     wn.promise (resolve, reject) ~>
