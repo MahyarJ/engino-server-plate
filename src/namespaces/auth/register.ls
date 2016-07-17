@@ -1,6 +1,5 @@
 require! {
   'when': wn
-  '../../lib'
 }
 
 module.exports = (params) ->

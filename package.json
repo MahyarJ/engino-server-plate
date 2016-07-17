@@ -1,20 +1,33 @@
 {
-  "name": "enginoServer",
+  "name": "@mahyarj/engino-server",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "dev": "nodemon -e ls index.js"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cookieparser": "^0.1.0",
+    "cross-env": "^1.0.8",
     "express": "^4.13.4",
-    "livescript": "^1.4.0",
     "mongodb": "^2.1.7",
-    "socket.io": "^1.4.5",
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^1.4.8",
+    "source-map-support": "^0.4.1",
     "when": "^3.7.7"
+  },
+  "devDependencies": {
+    "devtool": "^2.0.2",
+    "livescript": "^1.5.0",
+    "livescript-loader": "^0.1.5",
+    "json-loader": "^0.5.4",
+    "nodemon": "^1.9.2",
+    "npm-run-all": "^2.3.0",
+    "raw-loader": "^0.5.1",
+    "react-styling-loader": "0.0.1",
+    "stylus-loader": "^2.0.0",
+    "webpack": "^1.13.1",
+    "webpack-error-notification": "^0.1.6"
   }
 }
