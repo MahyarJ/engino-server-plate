@@ -4,3 +4,4 @@ xeno
 data
 *.bat
 *.log
+.DS_Store
