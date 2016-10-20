@@ -4,15 +4,17 @@ require! {
   'path': path
 }
 
-module.exports = ({ projectDir, index }) ->
-  entry: index
+module.exports =
+  entry: './src/server.ls'
   target: \node
   devtool: \source-map
 
+  # Warning: Don't remove this externals stuff
+  # we don't have any idea what is it
+  # but require will not work without it.
   externals:
     //
       ^
-      (?!\@mahyarj\/engino\-server)
       [a-z\-0-9]+
     //
     ...
@@ -29,12 +31,11 @@ module.exports = ({ projectDir, index }) ->
     fallback:
       [ path.join(__dirname, \node_modules) ]
     alias:
-      '$ens': path.join __dirname, 'src/namespaces'
+      '$ns': path.join __dirname, 'src/namespaces'
       '$engino': path.join __dirname, 'src'
-      '$ns': path.join projectDir, 'src/namespaces'
 
   output:
-    path: path.join projectDir, './dist'
+    path: './dist'
     filename: 'index.dist.js'
     publicPath: '/dist/'  # shows the path from .html file till the .js files for script tag
     libraryTarget: \commonjs2
@@ -42,7 +43,6 @@ module.exports = ({ projectDir, index }) ->
   resolveLoader:
     root:
       path.join __dirname, \node_modules
-      path.join projectDir, \node_modules
 
   module:
     loaders:
