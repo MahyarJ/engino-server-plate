@@ -32,9 +32,6 @@ enginoInit.then (result) ->
   server = http.createServer app
   io = socket server
   io.on 'connection', (socket) ->
-    socket.emit \message,
-      title: '-- Hello Dude --'
-
     socket.on \callee, (data) ->
       requestKey = data.requestKey or "invalid_key"
       try
